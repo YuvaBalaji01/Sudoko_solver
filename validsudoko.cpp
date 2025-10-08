@@ -66,8 +66,15 @@ int main(){
         }
     }
 
-    cout << sudoko(matrix) << endl;
+    if(sudoko(matrix))
+    cout << "Their exisist a solution"<< endl;
+    else cout << "No solution exsist" << endl;
 
+    cout << "Press 1 if you want the solution" << endl;
+    int v;
+    cin >> v;
+
+    if(v==1){
      for(int i=0;i<9;i++){
         cout << "|";
         for(int j=0;j<9;j++){
@@ -80,4 +87,6 @@ int main(){
 
         
     }
+    }
+
 }
