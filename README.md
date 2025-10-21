@@ -58,3 +58,6 @@ Run the game directly from the VS Code terminal:
 Bash
 
 .\sudoku_game.exe
+
+NOTE:
+validsudoko.cpp is just a normal sudoko solver code in c++ just for understanding how sudoko is solved using backtracking in c++
