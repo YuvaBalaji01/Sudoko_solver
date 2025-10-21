@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Raylib Sudoku",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                // Source files: ONLY LIST .cpp FILES HERE
+                "solver.cpp", 
+                
+                // 1. Link Raylib
+                "-lraylib",
+                
+                // 2. Link necessary dependencies
+                "-lopengl32",
+                "-lgdi32",
+                "-lwinmm",
+                "-lm",
+                
+                // Output executable name
+                "-o",
+                "${workspaceFolder}/sudoku_game.exe",
+                
+                // Compiler standard
+                "-std=c++17",
+                "-Wall"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "clear": true
+            },
+            "problemMatcher": "$gcc"
+        }
+    ]
+}
