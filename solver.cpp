@@ -147,8 +147,8 @@ void handleInput() {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || GetKeyPressed() != 0) {
         validationChecked = false; 
     }
-    
-    // Cell Selection Logic
+
+    // --- Cell Selection ---
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         Vector2 mousePoint = GetMousePosition();
         if (mousePoint.x >= GRID_OFFSET_X && mousePoint.x < GRID_OFFSET_X + GRID_SIZE * CELL_SIZE &&
@@ -156,26 +156,21 @@ void handleInput() {
         {
             selectedCol = (mousePoint.x - GRID_OFFSET_X) / CELL_SIZE;
             selectedRow = (mousePoint.y - GRID_OFFSET_Y) / CELL_SIZE;
-
-            // Only allow selection of initially empty cells
-            if (initialBoard[selectedRow][selectedCol] != 0) {
-                selectedRow = -1;
-                selectedCol = -1;
-            }
-        } else {
-            selectedRow = -1; // Deselect if clicked outside
-            selectedCol = -1;
         }
     }
 
-    // Number Input Logic
+    // --- Number Input ---
     if (selectedRow != -1 && selectedCol != -1) {
-        int key = GetKeyPressed();
-        if (key >= KEY_ONE && key <= KEY_NINE) {
-            currentBoard[selectedRow][selectedCol] = key - KEY_ZERO;
+        // Numbers 1-9
+        for (int k = KEY_ONE; k <= KEY_NINE; k++) {
+            if (IsKeyPressed(k)) {
+                currentBoard[selectedRow][selectedCol] = k - KEY_ZERO;
+                return;
+            }
         }
-        else if (key == KEY_BACKSPACE || key == KEY_DELETE || key == KEY_ZERO) {
-            currentBoard[selectedRow][selectedCol] = 0; // Clear the cell
+        // Clear cell
+        if (IsKeyPressed(KEY_ZERO) || IsKeyPressed(KEY_BACKSPACE) || IsKeyPressed(KEY_DELETE)) {
+            currentBoard[selectedRow][selectedCol] = 0;
         }
     }
 }
